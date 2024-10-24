@@ -14,6 +14,10 @@ variables:
 image:
   name: registry.cn-hangzhou.aliyuncs.com/goldenimage/ansible:2.15.12
 
+before_script:
+  - cp /etc/gitlab-runner/certs/gitlab.home.local.crt /usr/local/share/ca-certificates/ca.crt
+  - update-ca-certificates
+
 deploy:
   stage: deploy
   script:
