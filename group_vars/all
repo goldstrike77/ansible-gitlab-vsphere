@@ -1,0 +1,120 @@
+---
+# 主任务参数 #
+os_config: true      # 是否执行主机初始配置。
+os_datadisc: true    # 是否挂载数据盘。
+os_harden: true      # 是否执行主机加固配置。
+os_software: true    # 是否执行主机基本软件安装和更新。
+
+# 主机初始配置参数 #
+# 通用参数 #
+os_time_server: # 时间服务器。
+  - 'ntp1.aliyun.com'
+  - 'ntp2.aliyun.com'
+  - 'ntp3.aliyun.com'
+# 远程日志参数 #
+os_syslog: true # 是否启用远程日志。
+os_syslog_port: '1514' # 远程日志服务器端口。
+os_syslog_protocol: 'udp' # 远程日志服务器协议。
+os_syslog_server: # 远程日志服务器地址。
+  - "192.168.0.103"
+# Linux 初始参数 #
+os_linux_disable_unused_service: true # 是否禁用不需要的服务。
+os_linux_enables_needed_service: true # 是否启用需要的服务。
+os_linux_disable_tcp_offloading: true # 是否禁用TCP卸载。
+os_linux_disable_sysstat_collect: true # 是否禁用系统状态监测。
+os_linux_id_rsa: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDGu7vHIsAdqA2vMnENL/Ma97OgRp8tIKf+7yVxr6iGgVzUaR+Izp2OaDUe8NFvyWhU3GvpHwpkL5cEoKM+lnranJuBVIFU9Ggdpe18Hek/ZwERM8+v0oY1TJp9xDt1vVnNAq4YxdLMmYVQ8DWNB18Lz1NNDiDQMipIvs2DF631CHKH1dVKtwcU2aLAsnzhMp+PkW21yFkLEkXc2UfndEwC0X7+GRwp4hzlhDMC9F6wAZBeyq1/Ph71kjHBW39dRuh9YXrGH6j+Sf9z94q1RjLFiSgZ8AVkS0CCMhbsVZ5sbMpY9vMmHvxxGizGAzvFxnc8KQ+66yLpaNNTS1QJj4k6vBeHfW3Pezi7WgEFqJD4nBBej2woqRoT4pxnH/1FXAwGCPih62OsPmfgqFInhFOjJhZCAjsDtBT4iBATpEnicQjiyIau+sRIzSjQ1FMyWVsfp3NsHYWlk8XP0Wp6H3nzVkZEq8MTlhxQxEzu7LlgdgtFVE+P5ChhTHvxP3Cly/RepwVdKUPiNN9QnZdpD8KZnUHdtZKfgsCP1NvLUE3hUEhaSvL5fwL0pK06g8tYF8jSFmw81psemOtZAQ0iHYnZWPbgnR122fbo4PYEKgG12i6WSJ52MrD5cG8CAy5U5AuEV5vHEagG0qksIEl8hioRBrI0jYQ6SeeQmPOjaXyL9Q==' # 主机SSH密钥。
+os_linux_resolver_single_request: true # 启用域名解析单一请求。
+os_linux_shell_history: '50' # 历史记录存储在内存中的行数。
+os_linux_shell_timeout: '900' # 系统终端空闲等待时间(秒)。
+os_linux_rsyslog_keep: '2' # rsyslog日志保留期(周)。
+os_linux_journal_keep: '1' # Journal日志保留期(周)。
+os_linux_journal_storage_persistent: true # 是否启用Journal日志持久化。
+os_linux_journal_compress: true # 是否启用Journal日志压缩。
+os_linux_journal_rsyslog: true # 是否启用Journal日志发送至Rsyslog。
+os_linux_tz: 'Asia/Shanghai' # 主机时区。
+os_linux_ulimit_nofile: '20480' # 会话打开的文件/文件描述符的最大数目。
+os_linux_ulimit_nproc: '20480' # 会话打开的系统进程的最大数目。
+os_linux_default_umask: '002' # 一般用户默认文件创建模式掩码。
+
+# 主机数据盘操作 #
+# Linux 数据盘参数 #
+os_linux_disc_device: 'sdb' # 数据盘块设备。
+os_linux_fsopts: 'defaults,noatime' # 数据盘挂载参数。
+os_linux_fstype: 'xfs' # 数据盘文件系统。
+os_linux_lv: 'data' # 逻辑卷名称。
+os_linux_lv_size: '100%FREE' # 逻辑卷容量。
+os_linux_mount_point: '/var/lib/rancher' # 逻辑卷挂载点。
+os_linux_vg: 'VolGroup01' # 逻辑卷卷组名称。
+
+# 主机加固配置参数 #
+os_pass_length: '12' # 账户最低密码长度。
+os_pass_maxAge: '60' # Windows主机账户密码有效期。
+# 审计参数 #
+os_linux_disable_fs_exec_flags: 'rw,nosuid,nodev,noexec,relatime' # 磁盘分区安全挂载参数。
+os_linux_disable_rootlogin: true # 是否禁用root登录。
+os_linux_disable_selinux: true # 是否禁用selinux。
+os_linux_disable_unused_module: true # 是否禁用不需要的模块。
+os_linux_restrictive_file: true # 是否确保关键系统文件权限限制。
+os_linux_user_pw: # 密码复杂度策略。
+  minlen: '{{ os_pass_length | default(12) }}'
+  dcredit: '-1'
+  ucredit: '-1'
+  lcredit: '-1'
+
+# 主机基本软件安装和更新参数 #
+# Linux 参数 #
+os_linux_update_category: 'base,updates' # 需要更新的类别列表。
+
+# 公共领事配置参数 #
+customer: "it" # Define the customer name.
+environments: "prd" # Define the service environment.
+project: "demo" # Define the project name.
+group: "toolchain" # Define the group name.
+datacenter: 'home' # 定义数据中心。
+exporter_is_install: true # 是否部署普罗米修斯客户端。
+consul_public_register: true # 是否向公共领事注册普罗米修斯终端。
+consul_public_exporter_token: '7471828c-d50a-4b25-b6a5-d80f02a03bae' # 公共领事客户端访问控制令牌。
+consul_public_http_port: '8500' # 公共领事公共客户端端口。
+consul_public_http_prot: 'https' # 公共领事公共客户端协议。
+consul_public_clients: # 公共领事公共客户端列表。
+  - '192.168.0.1'
+
+vm_tags: ["cn-north-1","cn-north"]
+vm_datastore: "ds-san-lun1"
+vm_dns_server: ["192.168.0.1"]
+vm_gateway: "192.168.0.1"
+vm_netmask: "255.255.255.0"
+vm_network: "vlan-trunk-portrgoup"
+vcenter_hostname: "vcenter.esxi.lab"
+vcenter_username: "administrator@vsphere.local"
+vcenter_password: "{{ lookup('env', 'VSPHERE_PASSWORD') }}"
+vcenter_datacenter: "cn-north"
+vcenter_cluster: "cn-north-1"
+vcenter_resource_pool:
+  mem_shares: "normal"
+  mem_limit: -1
+  mem_reservation: 0
+  mem_expandable_reservations: true
+  cpu_shares: "normal"
+  cpu_limit: -1
+  cpu_reservation: 0
+  cpu_expandable_reservations: true
+os_linux_grub_args:
+  - 'rd.lvm.lv=VolGroup00/root'
+  - 'quiet'
+  - 'transparent_hugepage=never'
+rke2_disable_kube_proxy: true
+rke2_disable_cloud_controller: true
+rke2_disable:
+  - "rke2-canal"
+  - "rke2-coredns"
+  - "rke2-ingress-nginx"
+  - "rke2-metrics-server"
+rke2_cni:
+  provider: "none"
+  pod_cidr: "10.42.0.0/16"
+  srv_cidr: "10.43.0.0/16"
+rke2_server: '192.168.0.150'
+rke2_haproxy_dept: true
+rke2_haproxy_api: "6444"
+rke2_haproxy_server: "9346"

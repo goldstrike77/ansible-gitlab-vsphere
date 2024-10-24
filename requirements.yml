@@ -1,0 +1,15 @@
+- name: ansible-role-OS-bootstrap
+  src: git+https://gitea.home.local/suzhetao/ansible-role-OS-bootstrap.git
+  version: origin/2.15-v0.1
+
+- name: ansible-role-OS-beats
+  src: git+https://gitea.home.local/suzhetao/ansible-role-OS-beats.git
+  version: origin/2.15-v0.1
+
+- name: ansible-role-OS-beats
+  src: git+https://gitea.home.local/suzhetao/ansible-role-vmware-guest.git
+  version: origin/2.15-v0.1
+
+- name: ansible-role-OS-beats
+  src: git+https://gitea.home.local/suzhetao/ansible-role-OS-rke2.git
+  version: origin/v0.1

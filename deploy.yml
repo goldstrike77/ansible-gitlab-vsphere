@@ -1,0 +1,35 @@
+---
+- name: parameters
+  serial: 3
+  hosts: all
+  gather_facts: false
+  vars:
+    notes: "Created by Ansible"
+
+  pre_tasks:
+    - name: Create the guest vm
+      import_role:
+        name: "ansible-role-vmware-guest"
+
+    - name: Wait for system to become reachable
+      wait_for_connection:
+        timeout: "1800"
+
+    - setup:
+        filter: ansible_*
+
+    - set_fact:
+        ansible_become: yes
+      when: ansible_system == "Linux"
+
+    - name: Operating System initialization
+      include_role:
+        name: "ansible-role-OS-bootstrap"
+
+    - name: Wait for system to become reachable
+      wait_for_connection:
+        delay: "25"
+        timeout: "90"
+
+  roles:
+    - { role: ansible-role-OS-rke2 }
