@@ -6,10 +6,10 @@
   src: git+https://gitea.home.local/suzhetao/ansible-role-OS-beats.git
   version: origin/2.15-v0.1
 
-- name: ansible-role-OS-beats
+- name: ansible-role-vmware-guest
   src: git+https://gitea.home.local/suzhetao/ansible-role-vmware-guest.git
   version: origin/2.15-v0.1
 
-- name: ansible-role-OS-beats
+- name: ansible-role-OS-rke2
   src: git+https://gitea.home.local/suzhetao/ansible-role-OS-rke2.git
   version: origin/v0.1
