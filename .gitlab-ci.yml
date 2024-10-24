@@ -22,6 +22,7 @@ deploy:
   stage: deploy
   script:
     - ansible --version
+    - ansible-galaxy collection list
     - ansible-galaxy install -r requirements.yml --force
     - ansible-playbook -i hosts.ini deploy.yml -e ansible_password='{{ lookup("env", "ANSIBLE_PASSWORD") }}' -e ansible_sudo_pass='{{ lookup("env", "ANSIBLE_PASSWORD") }}'
   allow_failure: true
