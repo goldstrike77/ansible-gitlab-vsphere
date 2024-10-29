@@ -3,13 +3,14 @@ stages:
   - destroy
 
 variables:
-  ANSIBLE_INVENTORY_ENABLED: "ini"
-  ANSIBLE_DEPRECATION_WARNINGS: "False"
   ANSIBLE_COMMAND_WARNINGS: "False"
+  ANSIBLE_DEPRECATION_WARNINGS: "False"
+  ANSIBLE_FORCE_COLOR: "True"
   ANSIBLE_HOST_KEY_CHECKING: "False"
-  ANSIBLE_SSH_PIPELINING: "True"
-  ANSIBLE_SSH_ARGS: "-o GSSAPIAuthentication=no -o ControlMaster=auto -o ControlPersist=600s -o UserKnownHostsFile=/dev/null"
+  ANSIBLE_INVENTORY_ENABLED: "ini"
   ANSIBLE_ROLES_PATH: "/ansible"
+  ANSIBLE_SSH_ARGS: "-o GSSAPIAuthentication=no -o ControlMaster=auto -o ControlPersist=600s -o UserKnownHostsFile=/dev/null"
+  ANSIBLE_SSH_PIPELINING: "True"
 
 image:
   name: registry.cn-hangzhou.aliyuncs.com/goldenimage/ansible:2.15.12
@@ -25,4 +26,5 @@ deploy:
     - ansible-galaxy install -r requirements.yml --force
     - ansible-playbook -i hosts.ini deploy.yml -e ansible_password='{{ lookup("env", "ANSIBLE_PASSWORD") }}' -e ansible_sudo_pass='{{ lookup("env", "ANSIBLE_PASSWORD") }}'
   allow_failure: true
-  when: manual
+  rules:
+    - if: $CI_COMMIT_TITLE == "deploy"
