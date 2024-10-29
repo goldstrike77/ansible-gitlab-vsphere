@@ -1,4 +1,5 @@
 stages:
+  - build
   - deploy
   - destroy
 
@@ -15,16 +16,30 @@ variables:
 image:
   name: registry.cn-hangzhou.aliyuncs.com/goldenimage/ansible:2.15.12
 
+cache:
+  key: $CI_COMMIT_REF_SLUG
+  paths:
+    - /ansible/
+  policy: pull
+
 before_script:
   - cp /etc/gitlab-runner/certs/gitlab.home.local.crt /usr/local/share/ca-certificates/ca.crt
   - update-ca-certificates
 
+build:
+  stage: build
+  cache:
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - /ansible/
+  policy: pull-push
+  script:
+    - ansible-galaxy install -r requirements.yml --force
+
 deploy:
   stage: deploy
   script:
-    - ansible --version
-    - ansible-galaxy install -r requirements.yml --force
     - ansible-playbook -i hosts.ini deploy.yml -e ansible_password='{{ lookup("env", "ANSIBLE_PASSWORD") }}' -e ansible_sudo_pass='{{ lookup("env", "ANSIBLE_PASSWORD") }}'
-  allow_failure: true
   rules:
     - if: $CI_COMMIT_TITLE == "deploy"
+      when: on_success
