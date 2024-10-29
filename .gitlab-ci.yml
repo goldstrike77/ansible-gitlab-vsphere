@@ -9,7 +9,6 @@ variables:
   ANSIBLE_FORCE_COLOR: "True"
   ANSIBLE_HOST_KEY_CHECKING: "False"
   ANSIBLE_INVENTORY_ENABLED: "ini"
-  ANSIBLE_ROLES_PATH: "/ansible"
   ANSIBLE_SSH_ARGS: "-o GSSAPIAuthentication=no -o ControlMaster=auto -o ControlPersist=600s -o UserKnownHostsFile=/dev/null"
   ANSIBLE_SSH_PIPELINING: "True"
 
@@ -19,7 +18,7 @@ image:
 cache:
   key: $CI_COMMIT_REF_SLUG
   paths:
-    - /ansible/
+    - roles/
   policy: pull
 
 before_script:
@@ -31,7 +30,7 @@ build:
   cache:
     key: $CI_COMMIT_REF_SLUG
     paths:
-      - /ansible/
+      - roles/
     policy: pull-push
   script:
     - ansible-galaxy install -r requirements.yml --force
