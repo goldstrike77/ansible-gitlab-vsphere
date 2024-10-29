@@ -32,7 +32,7 @@ build:
     key: $CI_COMMIT_REF_SLUG
     paths:
       - /ansible/
-  policy: pull-push
+    policy: pull-push
   script:
     - ansible-galaxy install -r requirements.yml --force
 
