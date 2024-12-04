@@ -4,7 +4,6 @@ os_config: true      # 是否执行主机初始配置。
 os_datadisc: true    # 是否挂载数据盘。
 os_harden: true      # 是否执行主机加固配置。
 os_software: true    # 是否执行主机基本软件安装和更新。
-os_exporter: true
 
 # 主机初始配置参数 #
 # 通用参数 #
