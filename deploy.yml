@@ -31,5 +31,5 @@
         delay: "25"
         timeout: "90"
 
-#  roles:
-#    - { role: ansible-role-OS-rke2 }
+  roles:
+    - { role: ansible-role-linux-nginx, when: ngx_is_install | bool }

@@ -10,6 +10,6 @@
   src: git+https://gitea.home.local/suzhetao/ansible-role-vmware-guest.git
   version: origin/2.15-v0.1
 
-- name: ansible-role-OS-rke2
-  src: git+https://gitea.home.local/suzhetao/ansible-role-OS-rke2.git
-  version: origin/v0.1
+- name: ansible-role-linux-nginx
+  src: git+https://gitea.home.local/suzhetao/ansible-role-linux-nginx.git.git
+  version: origin/2.15-v0.1

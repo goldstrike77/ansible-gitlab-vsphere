@@ -106,3 +106,4 @@ os_linux_grub_args:
   - 'rd.lvm.lv=VolGroup00/lv_swap'
   - 'quiet'
   - 'transparent_hugepage=never'
+ngx_is_install: true
