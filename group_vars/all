@@ -43,7 +43,7 @@ os_linux_fsopts: 'defaults,noatime' # 数据盘挂载参数。
 os_linux_fstype: 'xfs' # 数据盘文件系统。
 os_linux_lv: 'data' # 逻辑卷名称。
 os_linux_lv_size: '100%FREE' # 逻辑卷容量。
-os_linux_mount_point: '/var/lib/rancher' # 逻辑卷挂载点。
+os_linux_mount_point: '/data' # 逻辑卷挂载点。
 os_linux_vg: 'VolGroup01' # 逻辑卷卷组名称。
 
 # 主机加固配置参数 #
@@ -66,10 +66,10 @@ os_linux_user_pw: # 密码复杂度策略。
 os_linux_update_category: 'base,updates' # 需要更新的类别列表。
 
 # 公共领事配置参数 #
-customer: "it" # Define the customer name.
+customer: "infra" # Define the customer name.
 environments: "prd" # Define the service environment.
 project: "demo" # Define the project name.
-group: "toolchain" # Define the group name.
+group: "app" # Define the group name.
 datacenter: 'home' # 定义数据中心。
 exporter_is_install: true # 是否部署普罗米修斯客户端。
 consul_public_register: true # 是否向公共领事注册普罗米修斯终端。
@@ -99,22 +99,7 @@ vcenter_resource_pool:
   cpu_limit: -1
   cpu_reservation: 0
   cpu_expandable_reservations: true
-os_linux_grub_args:
-  - 'rd.lvm.lv=VolGroup00/root'
-  - 'quiet'
-  - 'transparent_hugepage=never'
-rke2_disable_kube_proxy: true
-rke2_disable_cloud_controller: true
-rke2_disable:
-  - "rke2-canal"
-  - "rke2-coredns"
-  - "rke2-ingress-nginx"
-  - "rke2-metrics-server"
-rke2_cni:
-  provider: "none"
-  pod_cidr: "10.42.0.0/16"
-  srv_cidr: "10.43.0.0/16"
-rke2_server: '192.168.0.150'
-rke2_haproxy_dept: true
-rke2_haproxy_api: "6444"
-rke2_haproxy_server: "9346"
+#os_linux_grub_args:
+#  - 'rd.lvm.lv=VolGroup00/root'
+#  - 'quiet'
+#  - 'transparent_hugepage=never'
