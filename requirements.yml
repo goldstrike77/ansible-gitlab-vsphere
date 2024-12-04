@@ -13,3 +13,7 @@
 - name: ansible-role-linux-nginx
   src: git+https://gitea.home.local/suzhetao/ansible-role-linux-nginx.git
   version: origin/2.15-v0.1
+
+- name: ansible-role-linux-redis
+  src: git+https://gitea.home.local/suzhetao/ansible-role-linux-redis.git
+  version: origin/2.15-v0.1

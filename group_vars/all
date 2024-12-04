@@ -107,3 +107,6 @@ os_linux_grub_args:
   - 'quiet'
   - 'transparent_hugepage=never'
 ngx_is_install: true
+redis_is_install: true
+redis_version: "6.0.20"
+redis_cluster_mode: "sentinel"

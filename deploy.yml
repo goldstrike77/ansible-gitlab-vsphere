@@ -33,3 +33,4 @@
 
   roles:
     - { role: ansible-role-linux-nginx, when: ngx_is_install | bool }
+    - { role: ansible-role-linux-redis, when: redis_is_install | bool }
