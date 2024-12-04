@@ -4,6 +4,7 @@ os_config: true      # 是否执行主机初始配置。
 os_datadisc: true    # 是否挂载数据盘。
 os_harden: true      # 是否执行主机加固配置。
 os_software: true    # 是否执行主机基本软件安装和更新。
+os_exporter: true
 
 # 主机初始配置参数 #
 # 通用参数 #
@@ -99,7 +100,9 @@ vcenter_resource_pool:
   cpu_limit: -1
   cpu_reservation: 0
   cpu_expandable_reservations: true
-#os_linux_grub_args:
-#  - 'rd.lvm.lv=VolGroup00/root'
-#  - 'quiet'
-#  - 'transparent_hugepage=never'
+os_linux_grub_args:
+  - 'resume=/dev/mapper/VolGroup00-lv_swap'
+  - 'rd.lvm.lv=VolGroup00/root'
+  - 'rd.lvm.lv=VolGroup00/lv_swap'
+  - 'quiet'
+  - 'transparent_hugepage=never'
