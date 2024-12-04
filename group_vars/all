@@ -71,7 +71,7 @@ environments: "prd" # Define the service environment.
 project: "demo" # Define the project name.
 group: "app" # Define the group name.
 datacenter: 'home' # 定义数据中心。
-exporter_is_install: true # 是否部署普罗米修斯客户端。
+exporter_is_install: false # 是否部署普罗米修斯客户端。
 consul_public_register: true # 是否向公共领事注册普罗米修斯终端。
 consul_public_exporter_token: '7471828c-d50a-4b25-b6a5-d80f02a03bae' # 公共领事客户端访问控制令牌。
 consul_public_http_port: '8501' # 公共领事公共客户端端口。
